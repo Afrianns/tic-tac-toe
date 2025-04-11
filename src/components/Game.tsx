@@ -231,6 +231,8 @@ export default function Game({
     setResetValue: setResetValue,
     setNextRound: setNextRound,
     setMenu: setMenu,
+    round: roundTotal,
+    player: player.current,
   };
 
   return (

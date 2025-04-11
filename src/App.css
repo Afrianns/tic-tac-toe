@@ -55,7 +55,8 @@ h1 span {
 .setting {
   position: fixed;
   bottom: -40%;
-  width: 45em;
+  width: 100%;
+  max-width: 45em;
   height: 100%;
   background-color: #a7ec92;
   border-radius: 2rem 2rem 0 0;

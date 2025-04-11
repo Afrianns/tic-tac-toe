@@ -16,6 +16,8 @@ interface propsType {
   setResetValue: () => void;
   setNextRound: () => void;
   setMenu: () => void;
+  round: number;
+  player: string;
 }
 
 export default function MenuInGame({
@@ -27,6 +29,8 @@ export default function MenuInGame({
   setResetValue,
   setNextRound,
   setMenu,
+  round,
+  player,
 }: propsType) {
   const container = useRef<HTMLDivElement>(null);
 
@@ -39,7 +43,7 @@ export default function MenuInGame({
         duration: 1,
       });
       gsap.from(".back-color", {
-        x: "115%",
+        x: "130%",
         duration: 1,
         skewX: 50,
         scaleX: 1,
@@ -49,17 +53,29 @@ export default function MenuInGame({
     { scope: container, dependencies: [showGameMenu] }
   );
 
-  if (winner) {
-    info += `${winner} WIN #${roundCount}`;
-  } else if (spaceOccupied) {
-    info += `GAME TIE #${roundCount}`;
+  const getWhoWinner = () => {
+    if (winner == player) {
+      return `YOU(${winner})`;
+    } else {
+      return `BOT(${winner})`;
+    }
+  };
+
+  if (roundCount < round) {
+    if (winner) {
+      info += `${winner} WIN #${roundCount}`;
+    } else if (spaceOccupied) {
+      info += `GAME TIE #${roundCount}`;
+    } else {
+      info += `GAME PUASE #${roundCount}`;
+    }
   } else {
-    info += `GAME PUASE #${roundCount}`;
+    info += `${getWhoWinner()} ARE THE WINNER`;
   }
 
   const resume = () => {
     gsap.to(".back-color", {
-      x: "-115%",
+      x: "-130%",
       duration: 1,
       skewX: -50,
       scaleX: 1,
@@ -108,11 +124,12 @@ export default function MenuInGame({
               <div onClick={() => restart()}>
                 <Button button={buttonsMenuInGame[1]} />
               </div>
-              {!winner && !spaceOccupied ? (
+              {!winner && !spaceOccupied && (
                 <div onClick={() => resume()}>
                   <Button button={buttonsMenuInGame[2]} />
                 </div>
-              ) : (
+              )}
+              {roundCount < round && (
                 <div onClick={() => nextRound()}>
                   <Button button={buttonsMenuInGame[3]} />
                 </div>

@@ -1,9 +1,12 @@
 import { useState } from "react";
 import "./App.css";
+
 import gsap from "gsap";
+
 import Button from "./components/Button";
 import Game from "./components/Game";
 import Setting from "./components/Setting";
+
 import { buttonsMenuInGame } from "./utils/ButtonListMenu";
 import { useGSAP } from "@gsap/react";
 
@@ -30,7 +33,7 @@ export default function App() {
   };
 
   const transitionBackToGame = () => {
-    let data = gsap.to(".game-menu-wrapper", {
+    gsap.to(".game-menu-wrapper", {
       y: 0,
       duration: 1,
       ease: "expo.inOut",
@@ -38,7 +41,6 @@ export default function App() {
       onComplete() {
         setSoloGame(false);
         setBotGame(false);
-        data.kill();
       },
     });
   };
