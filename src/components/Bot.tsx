@@ -12,7 +12,10 @@ type duplicateType = {
   digit: string;
   duplicate: number;
 };
-
+type selectedPatternType = {
+  digit: string;
+  pattern: string;
+};
 export default function Bot(
   active: activeCardType,
   setActive: (a: activeCardType) => void,
@@ -39,8 +42,8 @@ export default function Bot(
   let enemyClosedtoWinPattern: string[] = [];
   let selfClosedtoWinPattern: string[] = [];
 
-  let enemySteps: string[] = [];
-  let selfSteps: string[] = [];
+  const enemySteps: string[] = [];
+  const selfSteps: string[] = [];
 
   // point = marker that either player or bot chosed
 
@@ -61,9 +64,9 @@ export default function Bot(
     if (count >= 2) {
       return possibleWinPattern;
     } else {
-      let subtituteXO: string[] = [];
+      const subtituteXO: string[] = [];
       possibleWinPattern.forEach((pattern: string) => {
-        let subtitute = new RegExp(`[${steps.join(" ")}]`, "g");
+        const subtitute = new RegExp(`[${steps.join(" ")}]`, "g");
         subtituteXO.push(pattern.replace(subtitute, type));
       });
 
@@ -87,8 +90,8 @@ export default function Bot(
 
   // get position that closest to winning pattern
   const checkMatchToWinPattern = (n: number, type: string) => {
+    const possibleWinPattern: string[] = [];
     let currentChosed: string = "";
-    let possibleWinPattern: string[] = [];
 
     winnnerPattern.forEach((pattern: string) => {
       if (active[n].type === type) {
@@ -227,20 +230,20 @@ export default function Bot(
   };
 
   const selfCheckPosition = () => {
-    let matchPattern: nestedArrayType[] = [];
-    let possibleBlockPattern: possibleBlockPatternType[] = [];
-    let result: number[] = [];
+    const matchPattern: nestedArrayType[] = [];
+    const possibleBlockPattern: possibleBlockPatternType[] = [];
+    const result: number[] = [];
 
-    let selectedPatternArray: string[] = [];
+    const selectedPatternArray: string[] = [];
+    const duplicate: duplicateType[] = [];
 
-    let possibleDigitPatternArray = new Set();
-    let duplicate: duplicateType[] = [];
+    const possibleDigitPatternArray = new Set();
     let totalDuplicateDigit = 0;
 
     // search single winnerPattern that occur multiple times on enemyClosedtoWinPattern
     // and get those index with total number of digit occur in single pattern of winnnerPattern
     winnnerPattern.forEach((pos: string) => {
-      let subMatchPattern: number[] = [];
+      const subMatchPattern: number[] = [];
 
       for (const pattern of enemyClosedtoWinPattern) {
         const patternWithoutXO = pattern.match(/[^xo]/g);
@@ -259,14 +262,14 @@ export default function Bot(
     });
 
     // get maximum length in matchPattern array
-    let initialLength = Math.max(...matchPattern.map((a) => a.length));
+    const initialLength = Math.max(...matchPattern.map((a) => a.length));
 
     // convert matchPattern to total pattern that has same as initialLength
     // search "matchPattern" that length and total of duplicate occurs more than the other
     // if not then push pattern than has same length
     matchPattern.forEach((patterns: number[], index: number) => {
       if (patterns.length === initialLength) {
-        let total = patterns.reduce((a, b) => a + b);
+        const total = patterns.reduce((a, b) => a + b);
         possibleBlockPattern.push({ [index]: total });
         if (total > totalDuplicateDigit) totalDuplicateDigit = total;
       }
@@ -274,7 +277,7 @@ export default function Bot(
 
     // get all index that has same total as totalDuplicateDigit and push to result
     possibleBlockPattern.forEach((position: possibleBlockPatternType) => {
-      let index = Object.keys(position)[0] as unknown as number;
+      const index = Object.keys(position)[0] as unknown as number;
       if (position[index] > totalDuplicateDigit) result.push(index);
       if (position[index] === totalDuplicateDigit) result.push(index);
     });
@@ -285,7 +288,9 @@ export default function Bot(
 
     for (const selectedPattern of selectedPatternArray) {
       enemyClosedtoWinPattern.forEach((pattern: string) => {
-        let matchDigit = pattern.match(new RegExp(`[${selectedPattern}]`, "g"));
+        const matchDigit = pattern.match(
+          new RegExp(`[${selectedPattern}]`, "g")
+        );
         if (matchDigit != null && matchDigit.length <= 1) {
           possibleDigitPatternArray.add(matchDigit.join(""));
         }
@@ -314,11 +319,13 @@ export default function Bot(
     }
 
     // check possible to win with previous position
-    let selfPossibleToWin = selfClosedtoWinPattern.filter((pattern: string) => {
-      return (
-        pattern.includes(playerBotMark) && !pattern.includes(playerOneMark)
-      );
-    });
+    const selfPossibleToWin = selfClosedtoWinPattern.filter(
+      (pattern: string) => {
+        return (
+          pattern.includes(playerBotMark) && !pattern.includes(playerOneMark)
+        );
+      }
+    );
 
     if (selfPossibleToWin.length <= 0) {
       console.log(
@@ -335,7 +342,7 @@ export default function Bot(
     }
 
     if (duplicate.length <= 0) {
-      let selectedDigitList: string[] = [];
+      const selectedDigitList: string[] = [];
       let longest = 0;
       for (const digit of possibleDigitPatternArray) {
         let count = 0;
@@ -367,7 +374,7 @@ export default function Bot(
     }
 
     if (duplicate.length == 1) {
-      console.log("second step duplicate ", duplicate, selfPossibleToWin);
+      // console.log("second step duplicate ", duplicate, selfPossibleToWin);
       let selectedDigit = "";
       for (const pattern of selfPossibleToWin) {
         if (pattern.includes(duplicate[0].digit)) {
@@ -387,15 +394,15 @@ export default function Bot(
     }
 
     if (duplicate.length > 1) {
-      console.log("third step duplicate ", duplicate, selfPossibleToWin);
-      let selectedPattern: any[] = [];
+      // console.log("third step duplicate ", duplicate, selfPossibleToWin);
+      const selectedPattern: selectedPatternType[] = [];
       for (const pattern of selfPossibleToWin) {
         let count = 0;
-        let fdigit = null;
+        let fdigit = "";
         for (const digit of possibleDigitPatternArray) {
           if (pattern.includes(digit as string)) {
             count++;
-            fdigit = digit;
+            fdigit = digit as string;
           }
         }
 
@@ -407,12 +414,12 @@ export default function Bot(
         }
       }
 
-      let resultDigit = selectedPattern
+      const resultDigit = selectedPattern
         .map((item) => {
           if (item.digit != null) return item.digit;
         })
         .filter((item) => item !== undefined);
-      let resultPattern = selectedPattern
+      const resultPattern = selectedPattern
         .map((item) => {
           if (item.digit == null) return item.pattern;
         })
@@ -431,7 +438,7 @@ export default function Bot(
   };
 
   const pickRandomDigitInPattern = (pattern: string) => {
-    let result = pattern.split("").find((digit) => digit !== playerBotMark);
+    const result = pattern.split("").find((digit) => digit !== playerBotMark);
     if (result) return checklistBoard(result);
   };
 

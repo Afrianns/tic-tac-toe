@@ -59,7 +59,7 @@ export default function Game({
   const nextPoint = useRef("circle");
   const [pointWin, setPointWin] = useState("");
   const Turn = useRef(false);
-  let isSavedScore = useRef(false);
+  const isSavedScore = useRef(false);
   const isOver = useRef(false);
   const [showGameMenu, setShowGameMenu] = useState(false);
 
@@ -72,7 +72,7 @@ export default function Game({
   // nextPoint.current = pointActive;
 
   // console.log(player.current, playerMarker, pointActive);
-  let spaceOccupied =
+  const spaceOccupied =
     selectedPoint["cross"].concat(selectedPoint["circle"]).length === 9;
   // set status
   const funcStatus = () => {

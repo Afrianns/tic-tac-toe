@@ -27,7 +27,7 @@ export default function Button({ button }: propsTypes) {
   }
 
   const funcSetIconInfo = () => {
-    let newName = button.name.split(" ");
+    const newName = button.name.split(" ");
     let icon = null;
     const componentSize = "20px";
 

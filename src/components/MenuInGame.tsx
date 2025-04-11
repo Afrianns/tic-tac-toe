@@ -9,7 +9,7 @@ import { ScoreType } from "../types/type";
 gsap.registerPlugin(useGSAP);
 
 interface propsType {
-  winner: String;
+  winner: string;
   showGameMenu: boolean;
   spaceOccupied: boolean;
   roundCount: number;
