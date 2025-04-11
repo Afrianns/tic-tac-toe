@@ -34,7 +34,7 @@ export default function App() {
 
   const transitionBackToGame = () => {
     gsap.to(".game-menu-wrapper", {
-      y: 0,
+      height: "100%",
       duration: 1,
       ease: "expo.inOut",
       clearProps: "all",
@@ -47,7 +47,7 @@ export default function App() {
 
   const transitionToGame = () => {
     gsap.to(".game-menu-wrapper", {
-      y: "-100%",
+      height: 0,
       duration: 1,
       ease: "expo.inOut",
     });

@@ -19,7 +19,8 @@ export default function Bot(
   selectedPoint: selectedPointType,
   setSelectedPoint: (a: selectedPointType) => void,
   setPointActive: (a: string) => void,
-  player: string
+  player: string,
+  nextPoint: { current: string }
 ) {
   const playerOne = player;
   const playerBot = player === "cross" ? "circle" : "cross";
@@ -211,7 +212,6 @@ export default function Bot(
 
   // checklist according to position coordinate
   const checklistBoard = (pos: string) => {
-    console.log("get Called", pos, selfSteps, enemySteps);
     setActive({
       ...active,
       [pos]: { type: playerBot, win: false, active: true },
@@ -223,6 +223,7 @@ export default function Bot(
     });
     setPointActive(playerOne);
     selfSteps.push(pos);
+    nextPoint.current = nextPoint.current == "cross" ? "circle" : "cross";
   };
 
   const selfCheckPosition = () => {

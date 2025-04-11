@@ -42,11 +42,23 @@ export default function MenuInGame({
         opacity: 0,
         duration: 1,
       });
-      gsap.from(".back-color", {
-        x: "130%",
+      // gsap.fromTo(
+      //   ".back-color",
+      //   {
+      //     width: "0%",
+      //     duration: 1,
+      //     ease: "expo.inOut",
+      //   },
+      //   {
+      //     width: "100%",
+      //     duration: 1,
+      //     ease: "expo.inOut",
+      //   }
+      // );
+
+      gsap.to(".back-color", {
+        width: "100%",
         duration: 1,
-        skewX: 50,
-        scaleX: 1,
         ease: "expo.inOut",
       });
     },
@@ -65,7 +77,6 @@ export default function MenuInGame({
     }
   };
 
-  console.log(winner);
   if (
     (winner && roundCount >= round) ||
     (spaceOccupied && roundCount >= round)
@@ -83,10 +94,8 @@ export default function MenuInGame({
 
   const resume = () => {
     gsap.to(".back-color", {
-      x: "-130%",
+      width: "0%",
       duration: 1,
-      skewX: -50,
-      scaleX: 1,
       ease: "expo.inOut",
     });
 

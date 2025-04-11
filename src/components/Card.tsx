@@ -53,8 +53,9 @@ export default function Card({
         ...selectedPoint,
         [nextPoint.current]: [...selectedPoint[nextPoint.current], point],
       });
+      nextPoint.current = nextPoint.current == "cross" ? "circle" : "cross";
 
-      setPointActive(nextPoint.current == "cross" ? "circle" : "cross");
+      setPointActive(nextPoint.current);
       Turn.current = true;
     }
   };
@@ -83,6 +84,7 @@ export default function Card({
     return initialClassName;
   };
 
+  // console.log(nextPoint.current);
   const PointAlternate = (point: number) => {
     if (active[point].active) {
       return active[point].type == "cross" ? (

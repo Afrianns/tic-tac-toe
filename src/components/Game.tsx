@@ -56,7 +56,7 @@ export default function Game({
   });
   const [score, setScore] = useState<ScoreType>(initialScore);
 
-  const nextPoint = useRef("cross");
+  const nextPoint = useRef("circle");
   const [pointWin, setPointWin] = useState("");
   const Turn = useRef(false);
   let isSavedScore = useRef(false);
@@ -69,8 +69,9 @@ export default function Game({
     [7, 8, 9],
   ];
 
-  nextPoint.current = pointActive;
+  // nextPoint.current = pointActive;
 
+  // console.log(player.current, playerMarker, pointActive);
   let spaceOccupied =
     selectedPoint["cross"].concat(selectedPoint["circle"]).length === 9;
   // set status
@@ -91,7 +92,8 @@ export default function Game({
         selectedPoint,
         setSelectedPoint,
         setPointActive,
-        player.current
+        player.current,
+        nextPoint
       );
     }, 1000);
     Turn.current = false;
@@ -101,7 +103,7 @@ export default function Game({
     BotRunning();
   }
 
-  if (player.current === "cross" && !BotPlayFirst.current) {
+  if (bot && player.current === "cross" && !BotPlayFirst.current) {
     BotRunning();
     BotPlayFirst.current = true;
   }
@@ -190,6 +192,7 @@ export default function Game({
     setRoundCount(1);
     isSavedScore.current = false;
     BotPlayFirst.current = false;
+    nextPoint.current = "circle";
   };
 
   const setNextRound = () => {
@@ -205,6 +208,7 @@ export default function Game({
     setRoundCount(roundCount + 1);
     isSavedScore.current = false;
     BotPlayFirst.current = false;
+    nextPoint.current = "circle";
   };
 
   const setMenu = () => {
