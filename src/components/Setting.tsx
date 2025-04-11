@@ -111,7 +111,7 @@ export default function Setting({
         </div>
         <div className="setting-content">
           <section className="setting-item">
-            <p>Player One Marker Type</p>
+            <p>Player One (P1) Marker Type*</p>
             <div className="setting-item-icon" onClick={toggle}>
               <span className="toggle"></span>
               <CrossActive width={20} height={20} fill="var(--cross-color)" />
@@ -119,7 +119,10 @@ export default function Setting({
             </div>
           </section>
           <p>
-            <strong>Note:</strong> O always be the first to move.
+            <strong>(*)</strong> O always be the first to move.
+          </p>
+          <p>
+            <strong>(*)</strong> P2 will be opposide P1 picked
           </p>
           <section className="setting-item">
             <p>Total Round</p>

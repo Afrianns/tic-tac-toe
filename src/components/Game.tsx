@@ -238,6 +238,7 @@ export default function Game({
     setNextRound: setNextRound,
     setMenu: setMenu,
     round: roundTotal,
+    score: score,
     player: player.current,
   };
 

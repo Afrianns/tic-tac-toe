@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Button from "./Button";
 
 import { buttonsMenuInGame } from "../utils/ButtonListMenu";
+import { ScoreType } from "../types/type";
 
 gsap.registerPlugin(useGSAP);
 
@@ -17,6 +18,7 @@ interface propsType {
   setNextRound: () => void;
   setMenu: () => void;
   round: number;
+  score: ScoreType;
   player: string;
 }
 
@@ -30,6 +32,7 @@ export default function MenuInGame({
   setNextRound,
   setMenu,
   round,
+  score,
   player,
 }: propsType) {
   const container = useRef<HTMLDivElement>(null);
@@ -42,19 +45,6 @@ export default function MenuInGame({
         opacity: 0,
         duration: 1,
       });
-      // gsap.fromTo(
-      //   ".back-color",
-      //   {
-      //     width: "0%",
-      //     duration: 1,
-      //     ease: "expo.inOut",
-      //   },
-      //   {
-      //     width: "100%",
-      //     duration: 1,
-      //     ease: "expo.inOut",
-      //   }
-      // );
 
       gsap.to(".back-color", {
         width: "100%",
@@ -66,12 +56,14 @@ export default function MenuInGame({
   );
 
   const getWhoWinner = () => {
-    if (winner !== "") {
-      if (winner == player) {
-        return `YOU(${winner}) ARE THE WINNER`;
-      } else {
-        return `BOT(${winner}) ARE THE WINNER`;
-      }
+    if (score.tie > score.playerOneWin && score.tie > score.playerTwoWin) {
+      return "GAME OVER WITH TIE";
+    } else if (score.playerOneWin > score.playerTwoWin) {
+      return `PLAYER ONE (${player}) ARE THE WINNER`;
+    } else if (score.playerTwoWin > score.playerOneWin) {
+      return `PLAYER TWO (${
+        player === "cross" ? "circle" : "cross"
+      }) ARE THE WINNER`;
     } else {
       return "GAME OVER WITH TIE";
     }
