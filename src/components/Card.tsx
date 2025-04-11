@@ -15,6 +15,8 @@ interface propsType {
   selectedPoint: selectedPointType;
   setSelectedPoint: (n: selectedPointType) => void;
   Turn: { current: boolean };
+  bot: boolean;
+  player: string;
 }
 
 export default function Card({
@@ -26,8 +28,21 @@ export default function Card({
   selectedPoint,
   setSelectedPoint,
   Turn,
+  bot,
+  player,
 }: propsType) {
   const selectPoint = (point: number) => {
+    if (bot) {
+      if (player == nextPoint.current) {
+        checklistBoard(point);
+      } else {
+        console.log("You cannot check this point, it's not your turn");
+      }
+    } else {
+      checklistBoard(point);
+    }
+  };
+  const checklistBoard = (point: number) => {
     if (active[point].type == "" && !active[point].active) {
       setActive({
         ...active,
@@ -76,11 +91,13 @@ export default function Card({
         <CircleActive className={changeCardColor(point)} />
       );
     } else {
-      return nextPoint.current == "cross" ? (
-        <CrossHover className={changeCardColor(point)} />
-      ) : (
-        <CircleHover className={changeCardColor(point)} />
-      );
+      if ((player == nextPoint.current && bot) || !bot) {
+        return nextPoint.current == "cross" ? (
+          <CrossHover className={changeCardColor(point)} />
+        ) : (
+          <CircleHover className={changeCardColor(point)} />
+        );
+      }
     }
   };
 

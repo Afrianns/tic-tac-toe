@@ -220,6 +220,8 @@ export default function Game({
     selectedPoint: selectedPoint,
     setSelectedPoint: setSelectedPoint,
     Turn: Turn,
+    player: player.current,
+    bot: bot,
   };
 
   const propsMenuGame = {
