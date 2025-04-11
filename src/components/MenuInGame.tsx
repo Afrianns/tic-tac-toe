@@ -54,18 +54,23 @@ export default function MenuInGame({
   );
 
   const getWhoWinner = () => {
-    if (winner == player) {
-      return `YOU(${winner})`;
+    if (winner !== "") {
+      if (winner == player) {
+        return `YOU(${winner}) ARE THE WINNER`;
+      } else {
+        return `BOT(${winner}) ARE THE WINNER`;
+      }
     } else {
-      return `BOT(${winner})`;
+      return "GAME OVER WITH TIE";
     }
   };
 
+  console.log(winner);
   if (
     (winner && roundCount >= round) ||
     (spaceOccupied && roundCount >= round)
   ) {
-    info += `${getWhoWinner()} ARE THE WINNER`;
+    info += `${getWhoWinner()}`;
   } else {
     if (winner) {
       info += `${winner} WIN #${roundCount}`;
