@@ -61,7 +61,12 @@ export default function MenuInGame({
     }
   };
 
-  if (roundCount < round) {
+  if (
+    (winner && roundCount >= round) ||
+    (spaceOccupied && roundCount >= round)
+  ) {
+    info += `${getWhoWinner()} ARE THE WINNER`;
+  } else {
     if (winner) {
       info += `${winner} WIN #${roundCount}`;
     } else if (spaceOccupied) {
@@ -69,8 +74,6 @@ export default function MenuInGame({
     } else {
       info += `GAME PUASE #${roundCount}`;
     }
-  } else {
-    info += `${getWhoWinner()} ARE THE WINNER`;
   }
 
   const resume = () => {
@@ -124,14 +127,17 @@ export default function MenuInGame({
               <div onClick={() => restart()}>
                 <Button button={buttonsMenuInGame[1]} />
               </div>
-              {!winner && !spaceOccupied && (
-                <div onClick={() => resume()}>
-                  <Button button={buttonsMenuInGame[2]} />
-                </div>
-              )}
-              {roundCount < round && (
+
+              {(winner && roundCount < round) ||
+              (spaceOccupied && roundCount < round) ? (
                 <div onClick={() => nextRound()}>
                   <Button button={buttonsMenuInGame[3]} />
+                </div>
+              ) : null}
+
+              {roundCount <= round && !winner && !spaceOccupied && (
+                <div onClick={() => resume()}>
+                  <Button button={buttonsMenuInGame[2]} />
                 </div>
               )}
             </div>
