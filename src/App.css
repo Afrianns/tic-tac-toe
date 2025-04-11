@@ -1,0 +1,140 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+h1 {
+  font-family: "Saira Stencil One", sans-serif;
+  text-transform: uppercase;
+  font-size: 4rem;
+}
+
+h1 span {
+  color: var(--light-green);
+}
+
+.btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.3rem;
+}
+
+.game-menu-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-color);
+  z-index: 2;
+  border-bottom: 5px solid var(--dark-green);
+}
+
+.game-menu h1 {
+  font-size: 3rem;
+}
+
+.game-menu span {
+  color: var(--dark-green);
+}
+
+.container-menu {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+
+.setting {
+  position: fixed;
+  bottom: -40%;
+  width: 45em;
+  height: 100%;
+  background-color: #a7ec92;
+  border-radius: 2rem 2rem 0 0;
+  box-shadow: 0 -20px 20px rgba(0, 0, 0, 0.1);
+}
+
+.setting .popup-button-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  transform: translateY(1rem);
+  border-radius: 50%;
+  margin-bottom: 2rem;
+}
+.setting .popup-button-wrapper button {
+  width: 6rem;
+}
+
+.setting .popup-button-wrapper button .btn-inside-styles {
+  padding: 0.4rem;
+}
+
+.setting-content {
+  margin: 0 3rem;
+  color: var(--background-color);
+  text-align: left;
+}
+
+.setting-item {
+  background-color: #a1e18d;
+  padding: 0 1rem;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.setting-item-icon {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem 0.5rem;
+  width: 6rem;
+  background-color: var(--background-color);
+  cursor: pointer;
+  height: fit-content;
+}
+
+.setting-item-icon .toggle {
+  position: absolute;
+  background-color: var(--dark-green);
+  top: 2px;
+  bottom: 2px;
+  width: 3rem;
+}
+
+.increase,
+.decrease {
+  width: 2rem;
+  margin: 0;
+  background-color: var(--dark-green);
+  text-align: center;
+  display: inline-block;
+}
+
+.increase:hover,
+.decrease:hover {
+  opacity: 0.8;
+}
+
+.inc-dec-placeholder {
+  width: 2rem;
+  margin: 0;
+  display: inline-block;
+}
+
+.round-total {
+  color: white;
+}

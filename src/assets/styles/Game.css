@@ -1,0 +1,142 @@
+/* card style */
+
+.card-board-wrapper {
+  display: flex;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.card {
+  cursor: pointer;
+  /* border: 3px solid var(--border-card); */
+  width: 120px;
+  height: 120px;
+  border-radius: 15px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  transform: translateY(-5px);
+}
+.card-wrapper {
+  background-color: var(--border-card);
+  border-radius: 15px;
+}
+
+.card-wrapper-color-win-cross {
+  background-color: var(--backdrop-cross);
+}
+
+.card-wrapper-color-win-circle {
+  background-color: var(--backdrop-circle);
+}
+.card-color {
+  background-color: var(--bg-card);
+}
+
+.card-color-win-cross {
+  background-color: var(--cross-color);
+}
+
+.card-color-win-circle {
+  background-color: var(--circle-color);
+}
+
+.card .icon {
+  display: none;
+  width: 80%;
+  height: 100%;
+}
+
+.card .show-img {
+  display: inline;
+}
+
+.card .cross-active-style {
+  fill: var(--cross-color);
+}
+
+.card .cross-hover-style {
+  fill: var(--cross-color);
+}
+
+.card .circle-active-style {
+  fill: var(--circle-color);
+}
+
+.card .circle-hover-style {
+  stroke: var(--circle-color);
+}
+
+.point-color-win {
+  fill: var(--bg-card);
+}
+
+.card:hover .icon {
+  display: inline;
+}
+
+.info-menu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 1rem;
+  margin: 2rem 0;
+  align-items: center;
+}
+
+.header-menu button {
+  margin: auto;
+  width: 100px;
+}
+
+.backdrop-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+}
+.back-color {
+  width: 100%;
+  background-color: var(--dark-menu-color);
+  z-index: 2;
+  position: relative;
+}
+
+.menu-wrapper {
+  padding: 1rem 0;
+  transform: translateY(-5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  line-height: 0;
+  letter-spacing: 2px;
+  background-color: var(--menu-color);
+  border-left: 5px solid greenyellow;
+  border-right: 5px solid greenyellow;
+}
+
+.menu-list {
+  display: flex;
+  height: fit-content;
+  gap: 10px;
+}
+
+.menu-list button {
+  width: 90px;
+  margin: 1.2rem 0;
+}
+
+.menu-list button .btn-inside-styles {
+  padding: 0.5rem 0;
+}
+
+.menu-wrapper h1 {
+  font-family: "Saira Stencil One", sans-serif;
+  font-size: 3rem;
+  display: inline-block;
+}

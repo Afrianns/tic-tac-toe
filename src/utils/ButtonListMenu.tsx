@@ -1,0 +1,60 @@
+const buttonsMenuInGame = [
+  {
+    ind: 7,
+    name: "MENU",
+    fore_color: "var(--info-color)",
+    back_color: "var(--info-color-dark)",
+    hover: true,
+    font_size: ".8rem",
+  },
+  {
+    ind: 8,
+    name: "RESTART",
+    fore_color: "var(--info-color)",
+    back_color: "var(--info-color-dark)",
+    hover: true,
+    font_size: ".8rem",
+  },
+  {
+    ind: 9,
+    name: "RESUME",
+    fore_color: "var(--light-green)",
+    back_color: "var(--dark-green)",
+    hover: true,
+    font_size: ".8rem",
+  },
+  {
+    ind: 10,
+    name: "NEXT ROUND",
+    fore_color: "var(--light-green)",
+    back_color: "var(--dark-green)",
+    hover: true,
+    font_size: ".8rem",
+  },
+  {
+    ind: 11,
+    name: "PLAY",
+    fore_color: "var(--light-green)",
+    back_color: "var(--dark-green)",
+    hover: true,
+    font_size: "1.5rem",
+  },
+  {
+    ind: 12,
+    name: "PLAY WITH CPU",
+    fore_color: "var(--info-color)",
+    back_color: "var(--info-color-dark)",
+    hover: true,
+    font_size: "1.5rem",
+  },
+  {
+    ind: 13,
+    name: "SETTING",
+    fore_color: "var(--info-color)",
+    back_color: "var(--info-color-dark)",
+    hover: true,
+    font_size: "1.5rem",
+  },
+];
+
+export { buttonsMenuInGame };
