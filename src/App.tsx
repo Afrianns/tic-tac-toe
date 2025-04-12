@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import "./assets/styles/App.css";
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";

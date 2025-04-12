@@ -328,12 +328,12 @@ export default function Bot(
     );
 
     if (selfPossibleToWin.length <= 0) {
-      console.log(
-        "first step ",
-        duplicate,
-        selfPossibleToWin,
-        possibleDigitPatternArray
-      );
+      // console.log(
+      //   "first step ",
+      //   duplicate,
+      //   selfPossibleToWin,
+      //   possibleDigitPatternArray
+      // );
       return checklistBoard(
         [...possibleDigitPatternArray][
           Math.floor(Math.random() * possibleDigitPatternArray.size)
@@ -356,7 +356,7 @@ export default function Bot(
           longest = count;
         }
       }
-      console.log("first step duplicate ", selectedDigitList, duplicate);
+      // console.log("first step duplicate ", selectedDigitList, duplicate);
 
       if (selectedDigitList.length > 0) {
         checklistBoard(
@@ -394,7 +394,13 @@ export default function Bot(
     }
 
     if (duplicate.length > 1) {
-      // console.log("third step duplicate ", duplicate, selfPossibleToWin);
+      // console.log(
+      //   "third step duplicate ",
+      //   resultDigit,
+      //   duplicate,
+      //   selectedPattern,
+      //   selfPossibleToWin
+      // );
       const selectedPattern: selectedPatternType[] = [];
       for (const pattern of selfPossibleToWin) {
         let count = 0;
@@ -416,12 +422,13 @@ export default function Bot(
 
       const resultDigit = selectedPattern
         .map((item) => {
-          if (item.digit != null) return item.digit;
+          if (item.digit != "") return item.digit;
         })
         .filter((item) => item !== undefined);
+
       const resultPattern = selectedPattern
         .map((item) => {
-          if (item.digit == null) return item.pattern;
+          if (item.digit == "") return item.pattern;
         })
         .filter((item) => item !== undefined);
 
