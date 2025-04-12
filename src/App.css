@@ -168,3 +168,16 @@ h1 span {
 .round-total {
   color: white;
 }
+
+@media screen and (max-width: 500px) {
+  #root {
+    padding: 0rem;
+  }
+  .setting-content,
+  .setting-content .setting-item p {
+    margin: 0;
+  }
+  .setting-content p {
+    margin-left: 1rem;
+  }
+}

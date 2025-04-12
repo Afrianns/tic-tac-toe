@@ -142,3 +142,14 @@
   font-size: 3rem;
   display: inline-block;
 }
+
+@media screen and (max-width: 1000px) {
+  .menu-wrapper {
+    line-height: normal;
+  }
+}
+@media screen and (max-width: 500px) {
+  .menu-wrapper h1 {
+    font-size: 2rem;
+  }
+}
