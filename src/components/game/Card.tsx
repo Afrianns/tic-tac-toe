@@ -1,10 +1,10 @@
-import type { activeCardType, selectedPointType } from "../types/type";
+import type { activeCardType, selectedPointType } from "../../types/type";
 
-import CircleHover from "../assets/points/hover/circle.svg?react";
-import CrossHover from "../assets/points/hover/cross.svg?react";
+import CircleHover from "../../assets/points/hover/circle.svg?react";
+import CrossHover from "../../assets/points/hover/cross.svg?react";
 
-import CircleActive from "../assets/points/active/circle.svg?react";
-import CrossActive from "../assets/points/active/cross.svg?react";
+import CircleActive from "../../assets/points/active/circle.svg?react";
+import CrossActive from "../../assets/points/active/cross.svg?react";
 
 interface propsType {
   row: number;

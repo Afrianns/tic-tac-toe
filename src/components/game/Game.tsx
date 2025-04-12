@@ -1,14 +1,14 @@
-import "../assets/styles/Game.css";
+import "../../assets/styles/Game.css";
 import { useRef, useState } from "react";
 
-import { activeCardType, ScoreType, selectedPointType } from "../types/type";
+import { activeCardType, ScoreType, selectedPointType } from "../../types/type";
 
 import Card from "./Card";
-import Button from "./Button";
+import Button from "../../utils/Button";
 import Bot from "./Bot";
 
-import MenuInGame from "./MenuInGame";
-import ButtonListGame from "../utils/ButtonListGame";
+import MenuInGame from "../MenuInGame";
+import ButtonListGame from "../../utils/ButtonListGame";
 interface propsType {
   transitionMenuR: () => void;
   solo: boolean;

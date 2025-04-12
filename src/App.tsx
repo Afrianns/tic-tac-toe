@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
-import Button from "./components/Button";
-import Game from "./components/Game";
+import Button from "./utils/Button";
+import Game from "./components/game/Game";
 import Setting from "./components/Setting";
 
 import { buttonsMenuInGame } from "./utils/ButtonListMenu";
-import { useGSAP } from "@gsap/react";
+import Notification from "./utils/Notification";
 
 export default function App() {
   const [soloGame, setSoloGame] = useState(false);
@@ -17,6 +18,16 @@ export default function App() {
 
   const [playerMarker, setPlayerMarker] = useState(false);
   const [roundTotal, setRoundTotal] = useState(2);
+  const [showNotif, setShowNotif] = useState(false);
+
+  const LSData = localStorage.getItem("setting-data");
+
+  useEffect(() => {
+    if (LSData) {
+      setRoundTotal(JSON.parse(LSData).roundTotal);
+      setPlayerMarker(JSON.parse(LSData).playerMarker);
+    }
+  }, []);
 
   const playGameSolo = () => {
     setSoloGame(true);
@@ -30,6 +41,13 @@ export default function App() {
 
   const setting = () => {
     setShowSetting(true);
+  };
+
+  const showNotification = () => {
+    setShowNotif(true);
+    // setTimeout(() => {
+    //   setShowNotif(false);
+    // }, 5000);
   };
 
   const transitionBackToGame = () => {
@@ -87,12 +105,14 @@ export default function App() {
     setPlayerMarker: setPlayerMarker,
     roundTotal: roundTotal,
     setRoundTotal: setRoundTotal,
+    showNotification: showNotification,
   };
 
   return (
     <div>
       {(soloGame || botGame) && <Game {...gameProps} />}
       <div className="game-menu-wrapper">
+        {showNotif && <Notification setShowNotif={setShowNotif} />}
         <div className="game-menu">
           <h1>
             {" "}

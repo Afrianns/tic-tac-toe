@@ -1,4 +1,4 @@
-import { activeCardType, selectedPointType } from "../types/type";
+import { activeCardType, selectedPointType } from "../../types/type";
 
 const winnnerPattern = ["123", "456", "789", "147", "258", "369", "159", "357"];
 const edges = ["1", "3", "7", "9"];

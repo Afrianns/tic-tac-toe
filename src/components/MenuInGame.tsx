@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
-import Button from "./Button";
+import Button from "../utils/Button";
 
 import { buttonsMenuInGame } from "../utils/ButtonListMenu";
 import { ScoreType } from "../types/type";

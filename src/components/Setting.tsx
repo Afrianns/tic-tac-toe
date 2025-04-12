@@ -1,16 +1,17 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import Button from "./Button";
+import Button from "../utils/Button";
 
 import CircleActive from "../assets/points/active/circle.svg?react";
 import CrossActive from "../assets/points/active/cross.svg?react";
 
 interface propsType {
-  hideSetting: (n: boolean) => void;
   playerMarker: boolean;
-  setPlayerMarker: (n: boolean) => void;
   roundTotal: number;
+  hideSetting: (n: boolean) => void;
+  setPlayerMarker: (n: boolean) => void;
   setRoundTotal: (n: number) => void;
+  showNotification: () => void;
 }
 
 export default function Setting({
@@ -19,6 +20,7 @@ export default function Setting({
   hideSetting,
   setPlayerMarker,
   setRoundTotal,
+  showNotification,
 }: propsType) {
   useGSAP(() => {
     gsap.from(".setting", {
@@ -81,6 +83,18 @@ export default function Setting({
     setRoundTotal(roundTotal - 1);
   };
 
+  const saveSettingData = () => {
+    localStorage.setItem(
+      "setting-data",
+      JSON.stringify({
+        roundTotal: roundTotal,
+        playerMarker: playerMarker,
+      })
+    );
+
+    showNotification();
+  };
+
   const button = [
     {
       ind: 14,
@@ -104,7 +118,9 @@ export default function Setting({
     <>
       <div className="setting">
         <div className="popup-button-wrapper">
-          <Button button={button[0]} />
+          <div onClick={saveSettingData}>
+            <Button button={button[0]} />
+          </div>
           <div onClick={hide}>
             <Button button={button[1]} />
           </div>
