@@ -48,7 +48,7 @@ export default function Game({
 
   const BotPlayFirst = useRef(false);
 
-  const [pointActive, setPointActive] = useState(player.current);
+  const [pointActive, setPointActive] = useState("circle");
   const [active, setActive] = useState<activeCardType>(initialBoard);
   const [selectedPoint, setSelectedPoint] = useState<selectedPointType>({
     cross: [],
@@ -177,7 +177,7 @@ export default function Game({
 
   const setResetValue = () => {
     setPointWin("");
-    setPointActive(player.current);
+    setPointActive("circle");
     setScore({
       playerOneWin: 0,
       playerTwoWin: 0,
@@ -197,7 +197,7 @@ export default function Game({
 
   const setNextRound = () => {
     setPointWin("");
-    setPointActive(player.current);
+    setPointActive("circle");
 
     setActive(initialBoard);
     setSelectedPoint({

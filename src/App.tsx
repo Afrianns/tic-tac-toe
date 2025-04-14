@@ -45,9 +45,6 @@ export default function App() {
 
   const showNotification = () => {
     setShowNotif(true);
-    // setTimeout(() => {
-    //   setShowNotif(false);
-    // }, 5000);
   };
 
   const transitionBackToGame = () => {
